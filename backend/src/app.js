@@ -12,7 +12,6 @@ const cors = require("cors");
 const { Server } = require("socket.io");
 const userRoutes = require("./routes/userRoutes.js");
 const { log } = require("console");
-const { awaitLazyProperties } = require("create");
 const app = express();
 const server = http.createServer(app);
 const io = connectToSocket(server);
