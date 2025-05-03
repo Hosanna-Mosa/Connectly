@@ -1,0 +1,59 @@
+.meetingContainer {
+  display: flex;
+}
+
+.leftPanel > h2 {
+  font-size: x-large;
+  font-weight: 600;
+}
+
+.leftPanel {
+  padding-top: 220px;
+  padding-left: 100px;
+}
+
+.meetingInput {
+  padding: 20px;
+  padding-left: 100px;
+}
+
+@media (max-width: 768px) {
+  .meetingContainer {
+    flex-direction: column;
+  }
+
+  .leftPanel {
+    padding: 0;
+  }
+
+  .rightPanel {
+    height: 65vh;
+    width: 100vw;
+  }
+  .responsive-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .meetingContainer > div > div {
+        padding-inline: 50px;
+        /* padding-bottom: 0;*/
+        padding-top: 28px; 
+  }
+
+  .meetingContainer > div > div > h2 {
+    font-weight: 600;
+    text-align: center;
+    font-size: xx-large;
+  }
+  .meetingInput{
+    padding: 0;
+  }
+  .totalMessageInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

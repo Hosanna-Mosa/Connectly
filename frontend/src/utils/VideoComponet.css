@@ -1,0 +1,222 @@
+
+.meetVideocontainer{
+    
+    height: 100vh;
+    width: 100vw;
+    background:rgb(3, 8, 85);
+}
+
+/* .meetVideocontainer > div{
+    height: 70%;
+    width: %;
+    border: 3px white solid;
+    display: flex;
+    flex-wrap: nowrap;
+} */
+
+.singleUser{
+    height: 80%;
+    width: 75%;
+    border: 2px white solid;
+    margin-left: 130px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.singleUser > video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; 
+    border-radius: 20px;
+}
+
+.blackVideo{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.doubleUser{
+    height: 150px;
+    width: 280px;
+    /* border: 5px red solid; */
+    object-fit: cover; 
+    /* position: relative; */
+    position: absolute;
+    top : 520px;
+    left: 60px;
+    border-radius: 20px;
+
+
+}
+
+.multipleUser{
+    height: 80%;
+    width: 75%;
+    border: 2px white solid;
+    margin-left: 130px;
+    margin-top: 20px;
+    border-radius: 20px;
+    display: flex;
+    gap : 20px;
+    flex-wrap: wrap;
+}
+
+.multipleUser  video{
+    height: 250px;
+    width: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+
+}
+
+
+/* .multipleUser  div > video{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+} */
+
+.scrollable {
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+
+
+  
+  
+
+  .buttonsContainer{
+    margin-top: 20px;
+    width: 400px;
+    height: 70px;
+    position: absolute;
+    /* bottom: ; */
+    /* border: 2px white dotted; */
+    left: 500px;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  .buttonsContainer svg {
+    font-size: 45px;
+  }
+
+  .prereviewVideo{
+    width: 50vw;
+    border-radius: 30px;
+    height: 67vh;
+
+  }
+
+  .previewVideoframe{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* display: block; */
+    border-radius: 30px;
+  }
+
+  .prereviewContainer{
+    display: flex;
+    gap: 20px;
+    padding-top: 60px;
+    padding-left: 50px;
+  }
+
+  .userInput{
+    margin-top: 250px;
+  }
+
+  .userInput Button{
+    height: 55px;
+    /* padding-left: 15px; */
+    margin-left: 5px;
+    font-weight: 600;
+  }
+
+  .lobbytext{
+    text-align: center;
+    font-size: 50px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-top: 20px;
+  }
+  @media (max-width: 800px) { 
+    .singleUser {
+        width: 90%;
+        margin: 10px auto;
+    }
+    .multipleUser {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+    .doubleUser {
+        height: 150px;
+        width: 280px;
+        left: 80px;
+        top : 490px
+    }
+
+    .buttonsContainer{
+        left: -10px;
+        width: 380px;
+
+    }
+    .scrollable {
+        overflow-x: auto;
+        max-width: 100vh;
+      }
+
+    .prereviewContainer{
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .prereviewVideo{
+        width: 95vw;
+        padding-left: 10px;
+        height: 70vh;
+    }
+
+    .userInput{
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lobbytext{
+        font-size: 40px;
+    }
+  }
+
+.chattingRoom{
+    color: rgb(23, 3, 3);
+    height: 90vh;
+    background-color: white;
+    width: 23%;
+    position: absolute;
+    right: 0;
+    border-radius: 15px;
+    margin-right: 12px;
+    padding-inline: 10px;
+
+}
+
+.chattingContainer{
+    position: relative;
+    height: 100%;
+
+}
+
+.chattingArea{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
+}
+
+.chattingDisplay{
+    
+}
