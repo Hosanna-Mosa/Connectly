@@ -6,11 +6,11 @@ const express = require("express");
 const httpStatus = require("http-status");
 const http = require("http");
 const mongoose = require("mongoose");
-const connectToSocket = require("./src/controllers/socketManger.js");
+const connectToSocket = require("./controllers/socketManger.js");
 
 const cors = require("cors");
 const { Server } = require("socket.io");
-const userRoutes = require("./src/routes/userRoutes.js");
+const userRoutes = require("./routes/userRoutes.js");
 const { log } = require("console");
 const { awaitLazyProperties } = require("create");
 const app = express();
