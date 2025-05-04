@@ -15,9 +15,10 @@ import ScreenShareIcon from "@mui/icons-material/ScreenShare";
 import StopScreenShareIcon from "@mui/icons-material/StopScreenShare";
 import ChatIcon from "@mui/icons-material/Chat";
 // import server from '../environment';
-import server from "../../environment";
+import server from "../environment";
+import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
 
-const server_url = server ;
+const server_url = server;
 
 var connections = {};
 
@@ -576,8 +577,7 @@ const VideoComponet = () => {
       {askForUsername === true ? (
         <div>
           <h2 className="lobbytext">Enter into Lobby </h2>
-          <div className="prereviewContainer" >
-            
+          <div className="prereviewContainer">
             <div className="prereviewVideo">
               <video
                 ref={localVideoref}
@@ -595,7 +595,7 @@ const VideoComponet = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 variant="outlined"
               />
-              <Button variant="contained"  onClick={connect}>
+              <Button variant="contained" onClick={connect}>
                 Connect
               </Button>
             </div>
@@ -629,7 +629,7 @@ const VideoComponet = () => {
                     label="Filled"
                     variant="filled"
                   />
-                  <Button variant="contained" onClick={sendMessage}>
+                  <Button variant="contained" onClick={sendMessage} className="msgSendBtn" >
                     Send
                   </Button>
                 </div>
@@ -691,7 +691,8 @@ const VideoComponet = () => {
             <Badge badgeContent={newMessages} max={999} color="warning">
               <IconButton style={{ color: "white" }} onClick={handleShowModal}>
                 {/* {audio === true ?  <MicIcon /> : <MicOffIcon></MicOffIcon>} */}
-                <ChatIcon />
+                {showModal === true ? <ChatIcon /> : <CommentsDisabledIcon/> }
+                
               </IconButton>
             </Badge>
 

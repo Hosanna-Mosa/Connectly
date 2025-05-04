@@ -142,6 +142,38 @@
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding-top: 20px;
   }
+
+  .chattingRoom{
+    color: rgb(23, 3, 3);
+    height: 90vh;
+    background-color: white;
+    width: 23%;
+    position: absolute;
+    right: 0;
+    border-radius: 15px;
+    margin-right: 12px;
+    padding-inline: 10px;
+
+}
+
+.chattingContainer{
+    position: relative;
+    height: 100%;
+
+}
+
+.chattingArea{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
+    
+}
+
+.msgSendBtn{
+  height: 55px;
+  margin-left:7px !important;
+}
+
   @media (max-width: 800px) { 
     .singleUser {
         width: 90%;
@@ -190,33 +222,15 @@
     .lobbytext{
         font-size: 40px;
     }
+
+    .chattingRoom{
+      width: 100%;
+      position: absolute;
+      top : 0;
+      margin : 0px;
+      z-index: 1000;
+    }
+
   }
 
-.chattingRoom{
-    color: rgb(23, 3, 3);
-    height: 90vh;
-    background-color: white;
-    width: 23%;
-    position: absolute;
-    right: 0;
-    border-radius: 15px;
-    margin-right: 12px;
-    padding-inline: 10px;
 
-}
-
-.chattingContainer{
-    position: relative;
-    height: 100%;
-
-}
-
-.chattingArea{
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 10px;
-}
-
-.chattingDisplay{
-    
-}
