@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import "../utils/LandingPage.css";
 import { Link } from "react-router-dom";
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 export const LandingPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -16,7 +16,7 @@ export const LandingPage = () => {
       <nav className="navbar">
         <div className="navHeader">Connectly</div>
         <div className="menu-toggle" onClick={toggleMenu}>
-         {menuOpen?<CloseIcon/>:<MenuIcon></MenuIcon>} 
+          {menuOpen ? <CloseIcon /> : <MenuIcon></MenuIcon>}
         </div>
         <div className={`navList ${menuOpen ? "active" : ""}`}>
           <Link to="/home" className="link-btn">
@@ -50,8 +50,12 @@ export const LandingPage = () => {
             </Link>
           </div>
         </div>
-        <div className="landingImage" >
-          <img className="mobile-png" src="/public/mobile.png" alt="" />
+        <div className="landingImage">
+          <img
+            className="mobile-png"
+            src="https://res.cloudinary.com/dk6rrrwum/image/upload/v1746354661/mobile_wxn1mz.png"
+            alt=""
+          />
         </div>
       </div>
     </div>

@@ -640,7 +640,7 @@ const VideoComponet = () => {
             className={
               videos.length <= 1
                 ? "singleUser"
-                : `multipleUser ${videos.length > 2 ? "scrollable" : null}`
+                : `multipleUser ${videos.length > 1 ? "scrollable" : null}`
             }
             style={showModal ? { marginLeft: 0 } : null}
           >

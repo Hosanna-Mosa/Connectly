@@ -72,7 +72,7 @@ const HomeComponent = () => {
         </div>
         </div>
         <div className="rightPanel">
-          <img srcSet="/logo2.svg" className="responsive-img" />
+          <img  src="https://res.cloudinary.com/dk6rrrwum/image/upload/v1746357628/logo2_g8hjdb.svg" className="responsive-img" />
         </div>
       </div>
     </>
