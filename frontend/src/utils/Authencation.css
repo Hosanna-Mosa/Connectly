@@ -3,3 +3,96 @@
     display: none;
   }
 }
+
+.signin-form {
+  background: #f5f7fa;
+  border-radius: 18px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.1),
+    0 1.5px 6px rgba(0, 0, 0, 0.08);
+  padding: 32px 28px 24px 28px;
+  transition:
+    box-shadow 0.3s,
+    background 0.3s;
+  border: 2px solid #1976d2;
+}
+
+.signin-form .MuiInputBase-root {
+  background: #fff;
+  border-radius: 8px;
+}
+
+.signin-form .MuiButton-contained {
+  background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.signup-form {
+  background: #fff7f5;
+  border-radius: 28px;
+  box-shadow:
+    0 6px 32px rgba(255, 87, 34, 0.1),
+    0 2px 8px rgba(255, 87, 34, 0.08);
+  padding: 36px 32px 28px 32px;
+  transition:
+    box-shadow 0.3s,
+    background 0.3s;
+  border: 2px solid #ff5722;
+}
+
+.signup-form .MuiInputBase-root {
+  background: #fff;
+  border-radius: 12px;
+}
+
+.signup-form .MuiButton-contained {
+  background: linear-gradient(90deg, #ff7043 60%, #ffab91 100%);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(255, 112, 67, 0.15);
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+/* Enhanced Snackbar styles */
+.MuiSnackbar-root {
+  z-index: 1500;
+}
+.MuiSnackbarContent-root {
+  background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.15);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  animation: snackbar-pop 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@keyframes snackbar-pop {
+  0% {
+    transform: scale(0.8) translateY(40px);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.05) translateY(-8px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .randomimg {
+    display: none;
+  }
+  .signin-form,
+  .signup-form {
+    padding: 18px 8px 12px 8px;
+    max-width: 98vw;
+  }
+}
