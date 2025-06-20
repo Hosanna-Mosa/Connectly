@@ -23,7 +23,7 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import CloseIcon from "@mui/icons-material/Close";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Helmet } from "react-helmet";
+//import { Helmet } from "react-helmet";
 import { Suspense, memo } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -148,7 +148,7 @@ const Authencation = memo(function Authencation() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Helmet>
+{/*       <Helmet>
         <title>Connectly | Authentication</title>
         <meta
           name="description"
@@ -176,7 +176,7 @@ const Authencation = memo(function Authencation() {
           href="https://static.canva.com/static/images/android-192x192-2.png"
           sizes="192x192"
         />
-      </Helmet>
+      </Helmet> */}
       <div style={{ display: "flex", height: "100vh" }}>
         <CssBaseline />
         {/* Left side background */}
