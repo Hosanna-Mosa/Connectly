@@ -7,6 +7,8 @@ const userSchema = new mongoose.Schema({
   userName: { type: String },
   password: { type: String },
   token: { type: String },
+  otp: { type: String },
+  otpExpiry: { type: Date },
 });
 
 const User = mongoose.model("User", userSchema);

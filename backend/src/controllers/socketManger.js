@@ -5,19 +5,16 @@ let messages = {};
 let timeOnline = {};
 
 module.exports = connectToSocket = (server) => {
-  
-    const io = new Server(server, {
-        cors: {
+  const io = new Server(server, {
+    cors: {
       origin: "*",
       methods: ["GET", "POST", "PUT"],
       allowedHeaders: "*",
       credentials: true,
     },
-    });
+  });
 
-    io.on("connection", (socket) => {
-      console.log(`User Connected.. ${socket.id}`);
-      
+  io.on("connection", (socket) => {
     socket.on("join-call", (roomId) => {
       if (connections[roomId] === undefined) {
         connections[roomId] = [];
@@ -83,12 +80,10 @@ module.exports = connectToSocket = (server) => {
       //Chat message to Every in that room
       connections[matchingRoom].forEach((element) => {
         io.to(element).emit("chat-message", data, sender, socket.id);
-        });
+      });
     });
 
     socket.on("disconnect", () => {
-      console.log(`User Disconnected.. ${socket.id}`);
-      
       //To Find User time online
       let diffTime = Math.abs(timeOnline[socket.id] - new Date());
       let key;
@@ -103,7 +98,7 @@ module.exports = connectToSocket = (server) => {
       //To Send Notify to Remaining Users to User left
       for (let i = 0; i < connections[key].length; i++) {
         io.to(connections[key][i]).emit("user-left", socket.id);
-}
+      }
 
       //Remove User from connections
       var index = connections[key].indexOf(socket.id);
