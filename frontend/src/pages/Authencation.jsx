@@ -148,35 +148,7 @@ const Authencation = memo(function Authencation() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Helmet>
-        <title>Connectly | Authentication</title>
-        <meta
-          name="description"
-          content="Sign in or sign up to Connectly, the best way to connect with your loved ones via secure video calls."
-        />
-        <meta
-          name="keywords"
-          content="Connectly, video call, sign in, sign up, authentication, secure, chat, connect"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index, follow" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="https://static.canva.com/static/images/android-192x192-2.png"
-        />
-        <link
-          rel="icon"
-          href="https://static.canva.com/static/images/android-192x192-2.png"
-          sizes="192x192"
-        />
-      </Helmet>
+    
       <div style={{ display: "flex", height: "100vh" }}>
         <CssBaseline />
         {/* Left side background */}
