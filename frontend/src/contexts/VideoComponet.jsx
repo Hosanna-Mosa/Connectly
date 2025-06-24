@@ -66,7 +66,6 @@ const VideoComponet = () => {
   const blackCanvasRef = useRef(null);
 
   useEffect(() => {
-    console.log("Taking Permissions...");
     getPermissions();
   }, []);
 
@@ -77,7 +76,6 @@ const VideoComponet = () => {
   useEffect(() => {
     if (isInitialized && video !== undefined && audio !== undefined) {
       getUserMedia();
-      console.log("SET STATE HAS ", video, audio);
     }
   }, [video, audio, isInitialized]);
 
@@ -112,13 +110,9 @@ const VideoComponet = () => {
         navigator.mediaDevices
           .getDisplayMedia({ video: true, audio: true })
           .then(getDisplayMediaSuccess)
-          .catch((e) => {
-            console.error("Error getting display media:", e);
+          .catch(() => {
             setScreen(false);
           });
-      } else {
-        console.warn("getDisplayMedia not supported");
-        setScreen(false);
       }
     }
   }, [screen]);
@@ -129,19 +123,11 @@ const VideoComponet = () => {
         video: true,
       });
       setVideoAvailable(!!videoPermission);
-      console.log(
-        "Video permission:",
-        !!videoPermission ? "granted" : "denied"
-      );
 
       const audioPermission = await navigator.mediaDevices.getUserMedia({
         audio: true,
       });
       setAudioAvailable(!!audioPermission);
-      console.log(
-        "Audio permission:",
-        !!audioPermission ? "granted" : "denied"
-      );
 
       setScreenAvailable(!!navigator.mediaDevices.getDisplayMedia);
 
@@ -272,8 +258,7 @@ const VideoComponet = () => {
       navigator.mediaDevices
         .getUserMedia({ video: video, audio: audio })
         .then(getUserMediaSuccess)
-        .catch((e) => {
-          console.error("Error getting user media:", e);
+        .catch(() => {
           setVideoAvailable(false);
           setAudioAvailable(false);
         });
@@ -360,16 +345,11 @@ const VideoComponet = () => {
   const gotMessageFromServer = useCallback((fromId, message) => {
     try {
       const signal = JSON.parse(message);
-      console.log(`[DEBUG] Signal received from ${fromId}:`, signal);
       if (fromId !== socketIdRef.current && connections[fromId]) {
         if (signal.sdp) {
           connections[fromId]
             .setRemoteDescription(new RTCSessionDescription(signal.sdp))
             .then(() => {
-              console.log(
-                `[DEBUG] Set remote description for ${fromId}:`,
-                signal.sdp.type
-              );
               if (signal.sdp.type === "offer") {
                 connections[fromId]
                   .createAnswer()
@@ -378,9 +358,6 @@ const VideoComponet = () => {
                       .setLocalDescription(description)
                       .then(() => {
                         if (socketRef.current) {
-                          console.log(
-                            `[DEBUG] Sending answer to peer ${fromId}`
-                          );
                           socketRef.current.emit(
                             "signal",
                             fromId,
@@ -452,9 +429,6 @@ const VideoComponet = () => {
 
           // Modern ontrack handler
           connections[socketListId].ontrack = (event) => {
-            console.log(
-              `[DEBUG] Received new track(s) from peer ${socketListId}`
-            );
             setVideos((videos) => {
               const existingVideo = videos.find(
                 (video) => video.socketId === socketListId
@@ -572,7 +546,6 @@ const VideoComponet = () => {
     const stream = blackCanvasRef.current.captureStream(30);
     const videoTrack = stream.getVideoTracks()[0];
     videoTrack.enabled = true;
-    // videoTrack.id = "alt-black-video-track";
     return videoTrack;
   }, []);
 
@@ -587,39 +560,18 @@ const VideoComponet = () => {
       tracks.push(silence());
     }
     const blackStream = new MediaStream(tracks);
-    console.log("[DEBUG] blackStream created:", blackStream);
-    console.log(
-      "[DEBUG] window.localStream set to black/canvas stream:",
-      window.localStream
-    );
-    console.log(
-      "[DEBUG] About to update all peer connections with black/canvas stream"
-    );
     return blackStream;
   }, [audio, createAlternativeBlackVideoTrack, silence]);
 
   // Update the testBlackStream function to use the new black stream
   const testBlackStream = useCallback(() => {
-    console.log("🧪 Testing black stream creation...");
     try {
       const blackStream = createBlackStream();
       if (!blackStream) {
-        console.error("❌ Black stream is null or undefined");
         return null;
       }
-      console.log("✅ Black stream created successfully");
-      console.log(
-        "📊 Stream tracks:",
-        blackStream.getTracks().map((t) => ({
-          id: t.id,
-          kind: t.kind,
-          enabled: t.enabled,
-          readyState: t.readyState,
-        }))
-      );
       if (localVideoref.current) {
         localVideoref.current.srcObject = blackStream;
-        console.log("✅ Black stream set to local video element");
       }
       return blackStream;
     } catch (error) {
@@ -640,24 +592,11 @@ const VideoComponet = () => {
 
   // Handle video toggle - FINAL VERSION WITH full stream replacement and renegotiation
   const handleVideo = useCallback(() => {
-    console.log(
-      "[DEBUG] handleVideo called. Current video state:",
-      video,
-      "Next state:",
-      !video
-    );
     const videoState = !video;
     setVideo(videoState);
     if (!videoState) {
-      console.log("[DEBUG] Entered camera OFF branch in handleVideo");
-      console.log("[DEBUG] About to create black/canvas stream");
       const blackStream = createBlackStream();
       window.localStream = blackStream;
-      console.log(
-        "[DEBUG] window.localStream set to black/canvas stream:",
-        window.localStream
-      );
-      console.log("[DEBUG] blackStream created:", blackStream);
       Object.keys(connections).forEach((id) => {
         try {
           connections[id].getSenders().forEach((sender) => {
@@ -671,9 +610,6 @@ const VideoComponet = () => {
           connections[id].createOffer().then((description) => {
             connections[id].setLocalDescription(description).then(() => {
               if (socketRef.current) {
-                console.log(
-                  `[DEBUG] Sending new offer (black stream) to peer ${id}`
-                );
                 socketRef.current.emit(
                   "signal",
                   id,
@@ -701,7 +637,6 @@ const VideoComponet = () => {
             if (localVideoref.current) {
               localVideoref.current.srcObject = stream;
             }
-            console.log("[DEBUG] Local stream replaced with camera stream");
             Object.keys(connections).forEach((id) => {
               try {
                 connections[id].getSenders().forEach((sender) => {
@@ -715,9 +650,6 @@ const VideoComponet = () => {
                 connections[id].createOffer().then((description) => {
                   connections[id].setLocalDescription(description).then(() => {
                     if (socketRef.current) {
-                      console.log(
-                        `[DEBUG] Sending new offer (camera stream) to peer ${id}`
-                      );
                       socketRef.current.emit(
                         "signal",
                         id,
@@ -739,8 +671,7 @@ const VideoComponet = () => {
             console.error("❌ Error handling video on:", error);
           }
         })
-        .catch((error) => {
-          console.error("❌ Error getting video stream:", error);
+        .catch(() => {
           setVideo(false); // Reset state on error
         });
     }
@@ -749,20 +680,13 @@ const VideoComponet = () => {
   const handleAudio = useCallback(() => {
     const audioState = !audio;
     setAudio(audioState);
-    console.log(
-      "[handleAudio]",
-      "Turning microphone",
-      audioState ? "ON" : "OFF"
-    );
 
     if (!audioState) {
-      console.log("🛑 Audio OFF: Creating silence stream");
       const silenceTrack = silence();
 
       try {
         const oldTrack = window.localStream?.getAudioTracks()[0];
         if (oldTrack) {
-          console.log("🧼 Stopping old audio track");
           oldTrack.stop();
           window.localStream.removeTrack(oldTrack);
         }
@@ -773,7 +697,6 @@ const VideoComponet = () => {
             .getSenders()
             .find((s) => s.track?.kind === "audio");
           if (sender) {
-            console.log("🔄 Replacing audio track in connection:", id);
             sender.replaceTrack(silenceTrack);
           }
         });
@@ -781,8 +704,6 @@ const VideoComponet = () => {
         console.error("Error handling audio off:", error);
       }
     } else {
-      console.log("Reconnecting the Audio");
-
       navigator.mediaDevices
         .getUserMedia({ audio: true })
         .then((stream) => {
@@ -808,8 +729,7 @@ const VideoComponet = () => {
             console.error("Error handling audio on:", error);
           }
         })
-        .catch((error) => {
-          console.error("Error getting audio stream:", error);
+        .catch(() => {
           setAudio(false);
         });
     }
@@ -1022,15 +942,6 @@ const VideoComponet = () => {
               title="End call"
             >
               <CallEndIcon />
-            </IconButton>
-
-            {/* Debug button - remove in production */}
-            <IconButton
-              onClick={testBlackStream}
-              style={{ color: "yellow" }}
-              title="Test Black Stream"
-            >
-              🧪
             </IconButton>
           </div>
         </div>
